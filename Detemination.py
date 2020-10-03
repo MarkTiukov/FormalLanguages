@@ -27,7 +27,7 @@ def determine():
                 new_machine[current_long_state].append((current_new_node, letter))
             if current_new_node not in queue and current_new_node not in new_machine:
                 queue.append(current_new_node)
-    print(new_machine)
+    printMachine(new_machine)
 
 
 def whereToGoByLit(machine, state, lit):
@@ -42,6 +42,13 @@ def whereToGoByLit(machine, state, lit):
     for lit in result:
         string_result += str(lit)
     return string_result
+
+
+def printMachine(machine: dict):
+    print("Новый ДКА:")
+    for start, transitions in machine.items():
+        for end, lit in transitions:
+            print(f"{start} {end} \"{lit}\"")
 
 
 if __name__ == '__main__':
