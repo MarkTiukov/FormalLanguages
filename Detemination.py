@@ -5,15 +5,8 @@ from collections import deque
 # конечного автомата (НКА)
 #
 # стартовое состояние должно быть 0 !!!!
-def determine():
-    n = int(input())  # количество состояний
-    m = int(input())  # количество переходов
-    alphabet = input().split()  # алфавит
-    machine = [[] for i in range(n)]
+def determine(alphabet: list, machine: list):
     new_machine = {}
-    for i in range(m):
-        begin, end, lit = input().split()
-        machine[int(begin)].append((int(end), lit))
     queue = deque(["0"])
     while len(queue) > 0:
         current_long_state = queue.popleft()
@@ -27,10 +20,10 @@ def determine():
                 new_machine[current_long_state].append((current_new_node, letter))
             if current_new_node not in queue and current_new_node not in new_machine:
                 queue.append(current_new_node)
-    printMachine(new_machine)
+    return new_machine
 
 
-def whereToGoByLit(machine, state, lit):
+def whereToGoByLit(machine: list, state: str, lit: str):
     result = set()
     for cur_state in state:
         for transition in machine[int(cur_state)]:
@@ -51,5 +44,16 @@ def printMachine(machine: dict):
             print(f"{start} {end} \"{lit}\"")
 
 
+def inputData():
+    n = int(input())  # количество состояний
+    m = int(input())  # количество переходов
+    alphabet = input().split()  # алфавит
+    machine = [[] for i in range(n)]
+    for i in range(m):
+        begin, end, lit = input().split()
+        machine[int(begin)].append((int(end), lit))
+    return alphabet, machine
+
+
 if __name__ == '__main__':
-    determine()
+    printMachine(determine(*inputData()))
