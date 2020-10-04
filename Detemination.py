@@ -64,5 +64,20 @@ def inputData():
     return alphabet, machine, final_states
 
 
+def makeTotal(machine, alphabet):
+    machine_length = len(machine)
+    new_state = str(machine_length)
+    machine[new_state] = [(new_state, letter) for letter in alphabet]
+    for state in machine.keys():
+        for letter in alphabet:
+            has_transition = False
+            for transition in machine[state]:
+                if letter == transition[1]:
+                    has_transition = True
+            if not has_transition:
+                machine[state].append((new_state, letter))
+    return machine
+
+
 if __name__ == '__main__':
     printMachine(*determine(*inputData()))
