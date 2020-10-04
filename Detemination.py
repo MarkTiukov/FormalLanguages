@@ -29,8 +29,9 @@ def determine(alphabet: list, machine: list, final_states: set):
 
 
 def whereToGoByLit(machine: list, state: str, lit: str):
+    SEPARATOR = "#"
     result = set()
-    for cur_state in state:
+    for cur_state in state.split(SEPARATOR):
         for transition in machine[int(cur_state)]:
             if transition[1] == lit:
                 result.add(transition[0])
@@ -38,7 +39,7 @@ def whereToGoByLit(machine: list, state: str, lit: str):
     result.sort()
     string_result = ""
     for lit in result:
-        string_result += str(lit)
+        string_result += (SEPARATOR if len(string_result) > 0 else "") + str(lit)
     return string_result
 
 

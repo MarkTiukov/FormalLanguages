@@ -13,11 +13,11 @@ class MyTestCase(unittest.TestCase):
                          [(3, "c")]]
         end_machine = {"0": [("2", "a"), ("1", "c")],
                        "1": [("1", "b")],
-                       "2": [("13", "c")],
-                       "13": [("1", "b"), ("3", "c")],
+                       "2": [("1#3", "c")],
+                       "1#3": [("1", "b"), ("3", "c")],
                        "3": [("3", "c")]}
         start_final_states = {"1", "3"}
-        end_final_states = {"1", "3", "13"}
+        end_final_states = {"1", "3", "1#3"}
         self.assertEqual(determine(alphabet, start_machine, start_final_states)[0], end_machine)
         self.assertEqual(determine(alphabet, start_machine, start_final_states)[1], end_final_states)
 
