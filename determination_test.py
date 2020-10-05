@@ -1,6 +1,6 @@
 import unittest
 
-from Detemination import determine, makeTotal
+from Determination import determine, makeTotal
 
 alphabet = ["a", "b", "c"]
 nka_machine = [[(1, "c"), (2, "a")],

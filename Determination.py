@@ -44,7 +44,7 @@ def whereToGoByLit(machine: list, state: str, lit: str):
 
 
 def printMachine(machine: dict, final_states: set):
-    print("Новый ДКА:")
+    print("Автомат:")
     for start, transitions in machine.items():
         for end, lit in transitions:
             print(f"{start} {end} \"{lit}\"")
