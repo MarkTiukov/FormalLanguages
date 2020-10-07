@@ -67,7 +67,7 @@ def inputData():
 def makeTotal(machine, alphabet):
     machine_length = len(machine)
     new_state = str(machine_length)
-    machine[new_state] = [(new_state, letter) for letter in alphabet]
+    is_total = True
     for state in machine.keys():
         for letter in alphabet:
             has_transition = False
@@ -75,7 +75,10 @@ def makeTotal(machine, alphabet):
                 if letter == transition[1]:
                     has_transition = True
             if not has_transition:
+                is_total = False
                 machine[state].append((new_state, letter))
+    if not is_total:
+        machine[new_state] = [(new_state, letter) for letter in alphabet]
     return machine
 
 

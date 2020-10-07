@@ -1,5 +1,4 @@
 def minimize(machine, alphabet, final_states):
-    number_of_classes = 2
     old_number = 2
     classes = {state: (1 if state in final_states else 0) for state in machine.keys()}  # 1 -- конечное, 0 -- иначе
     has_changed = True
@@ -24,10 +23,13 @@ def minimize(machine, alphabet, final_states):
             classes = new_classes
     return classes
 
+
 if __name__ == "__main__":
-    from Determination import inputData, determine, makeTotal
+    from Determination import inputData, determine, makeTotal, printMachine
 
     alphabet, machine, final_states = inputData()
     determined, determined_final_states = determine(alphabet, machine, final_states)
-    print(f"<MINIMIZED>:\n{minimize(makeTotal(determined, alphabet), alphabet, final_states)}")
-    
+    print("ПДКА:\n")
+    printMachine(makeTotal(determined, alphabet), determined_final_states)
+    print(f"MINIMIZED:\n{minimize(makeTotal(determined, alphabet), alphabet, determined_final_states)}")
+    # print(f"<MINIMIZED>:\n{printMachine(makeTotal(determined, alphabet), determined_final_states)}")
